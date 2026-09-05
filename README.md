@@ -7,27 +7,29 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
 ![License](https://img.shields.io/badge/License-Personal_Project-lightgrey)
 
-Osobní portfolio zaměřené na prezentaci mé práce, zkušeností a projektů v oblasti vývoje softwaru, především **Java a back-end vývoje**.
+A personal portfolio showcasing my professional experience, projects, and technical skills in software development, with a primary focus on **Java and back-end development**.
 
-Aplikace je vytvořena v Reactu a TypeScriptu s důrazem na jednoduchý responzivní design, přehlednou strukturu a snadnou rozšiřitelnost.
+The application is built with React and TypeScript and provides both **Czech and English language versions**. It focuses on responsive design, clean component architecture, and easy maintainability.
 
 > [!TIP]
-> **Live:** https://petrsafrata.github.io/portfolio/
+> **Live:** https://petrsafrata.cz/
 
 ---
 
-## ✨ Funkce
+## ✨ Features
 
-- Prezentace profesních zkušeností, vzdělání a technických dovedností
-- Přehled vlastních softwarových projektů s odkazy na jejich GitHub repozitáře
-- Prezentace certifikací včetně možnosti zobrazení originálního certifikátu
-- Responzivní rozhraní optimalizované pro desktop i mobilní zařízení
-- Komponentová architektura s oddělenými daty, typy a jednotlivými sekcemi
-- Automatický build a deployment na GitHub Pages pomocí GitHub Actions
+- Czech and English language versions with a built-in language switcher
+- Persistent language preference across visits
+- Overview of professional experience, education, and technical skills
+- Showcase of software projects with links to their GitHub repositories
+- Presentation of certifications with the option to view original certificates
+- Responsive interface optimized for desktop and mobile devices
+- Component-based architecture with separated content, translations, types, and UI sections
+- Automated build and deployment to GitHub Pages using GitHub Actions
 
 ---
 
-## 🛠️ Technologie
+## 🛠️ Technologies
 
 - **React**
 - **TypeScript**
@@ -36,7 +38,7 @@ Aplikace je vytvořena v Reactu a TypeScriptu s důrazem na jednoduchý responzi
 
 ---
 
-## 📁 Struktura projektu
+## 📁 Project Structure
 
 ```text
 portfolio/
@@ -44,10 +46,9 @@ portfolio/
 │   └── workflows/
 │       └── deploy-pages.yml
 ├── public/
-│   └── certificates/
 ├── src/
 │   ├── assets/
-│   │   └── images/
+│   │   ├── images/
 │   ├── components/
 │   │   ├── certificates/
 │   │   │   ├── CertificateCard.tsx
@@ -56,9 +57,18 @@ portfolio/
 │   │   │   ├── Card.tsx
 │   │   │   ├── Chip.tsx
 │   │   │   └── Section.tsx
+│   │   ├── LanguageSwitcher.tsx
 │   │   └── ProfilePhoto.tsx
+│   ├── context/
+│   │   ├── LanguageContext.tsx
+│   │   ├── LanguageContextValue.ts
+│   │   └── useLanguage.ts
 │   ├── data/
-│   │   └── portfolio.ts
+│   │   ├── index.ts
+│   │   ├── portfolio.cs.ts
+│   │   └── portfolio.en.ts
+│   ├── i18n/
+│   │   └── translations.ts
 │   ├── sections/
 │   │   ├── AboutSection.tsx
 │   │   ├── CertificationsSection.tsx
@@ -69,30 +79,61 @@ portfolio/
 │   │   ├── ProjectsSection.tsx
 │   │   └── SkillsSection.tsx
 │   ├── types/
+│   │   ├── language.ts
 │   │   └── portfolio.ts
-│   ├── App.tsx
 │   ├── App.css
+│   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
 ├── index.html
 ├── package.json
+├── README.md
 └── vite.config.ts
 ```
 
-Aplikace je rozdělena do několika základních vrstev:
+The application is divided into several main layers:
 
-- `components/` obsahuje znovupoužitelné UI komponenty
-- `sections/` obsahuje jednotlivé části portfolia
-- `data/` obsahuje data zobrazovaná na stránce
-- `types/` obsahuje sdílené TypeScript typy
-- `assets/` obsahuje assety zpracovávané aplikací
-- `public/` obsahuje veřejné statické soubory
+- `components/` contains reusable UI and feature-specific components
+- `context/` manages the currently selected language and language switching
+- `data/` contains separate Czech and English portfolio content
+- `i18n/` contains shared user-interface translations
+- `sections/` contains the individual portfolio page sections
+- `types/` contains shared TypeScript types
+- `assets/` contains assets processed by the application
+- `public/` contains publicly accessible static files
 
 ---
 
-## 💻 Lokální spuštění
+## 🌍 Localization
 
-Projekt vyžaduje nainstalovaný **Node.js** a **npm**.
+The portfolio supports both Czech and English.
+
+Language-specific portfolio content is stored separately:
+
+```text
+src/data/portfolio.cs.ts
+src/data/portfolio.en.ts
+```
+
+Shared interface translations are stored in:
+
+```text
+src/i18n/translations.ts
+```
+
+The active language is managed through the language context located in:
+
+```text
+src/context/
+```
+
+Users can switch between Czech and English directly in the interface. The selected language is persisted locally so it remains active on subsequent visits.
+
+---
+
+## 💻 Local Development
+
+The project requires **Node.js** and **npm**.
 
 ```bash
 git clone https://github.com/petrsafrata/portfolio.git
@@ -101,19 +142,19 @@ npm install
 npm run dev
 ```
 
-Produkční build lze vytvořit pomocí:
+To create a production build:
 
 ```bash
 npm run build
 ```
 
-Výsledné soubory budou vytvořeny v adresáři `dist/`.
+The production files will be generated in the `dist/` directory.
 
 ---
 
 ## 🚀 Deployment
 
-Portfolio je automaticky buildováno a nasazováno na **GitHub Pages** pomocí GitHub Actions.
+The portfolio is automatically built and deployed to **GitHub Pages** using GitHub Actions.
 
 Workflow:
 
@@ -121,16 +162,16 @@ Workflow:
 .github/workflows/deploy-pages.yml
 ```
 
-Při změně v hlavní větvi se vytvoří nový produkční build aplikace a po úspěšném dokončení se automaticky nasadí na GitHub Pages.
+Whenever changes are pushed to the main branch, a new production build is created and automatically deployed after a successful workflow run.
 
-Aktuální stav deploymentu je zobrazen pomocí GitHub Actions badge v horní části README.
+The current deployment status is displayed by the GitHub Actions badge at the top of this README.
 
 ---
 
-## ⚖️ Licence
+## ⚖️ License
 
-Tento projekt je autorské dílo.
+This project is copyrighted work.
 
-Zdrojový kód ani jeho části nesmí být bez předchozího souhlasu autora kopírovány, upravovány, šířeny nebo používány v jiných projektech.
+The source code, or any part of it, may not be copied, modified, distributed, or used in other projects without the author's prior permission.
 
-© Petr Šafrata. Všechna práva vyhrazena.
+© Petr Šafrata. All rights reserved.
