@@ -1,6 +1,7 @@
 import { Database, ExternalLink, GraduationCap, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { useLanguage } from "../../context/useLanguage";
 import type { Certification } from "../../types/portfolio";
 import { Card } from "../ui/Card";
 import { Chip } from "../ui/Chip";
@@ -12,6 +13,7 @@ const certIcon: Record<string, ReactNode> = {
 };
 
 export function CertificateCard({ certification, onPreview }: { certification: Certification; onPreview: (certification: Certification, trigger: HTMLButtonElement) => void }) {
+  const { t } = useLanguage();
   return (
     <Card className="p-4">
       <div className="flex items-center justify-between gap-3">
@@ -26,7 +28,7 @@ export function CertificateCard({ certification, onPreview }: { certification: C
       {certification.tags && <div className="mt-2.5 flex flex-wrap gap-1.5">{certification.tags.map((tag) => <Chip key={tag}>{tag}</Chip>)}</div>}
       {certification.certificate && (
         <button type="button" onClick={(event) => onPreview(certification, event.currentTarget)} className="mt-2.5 inline-flex items-center gap-1 text-xs font-medium text-purple-500 hover:text-purple-200">
-          Zobrazit certifikát <ExternalLink size={12} />
+          {t.certifications.viewCertificate} <ExternalLink size={12} />
         </button>
       )}
     </Card>

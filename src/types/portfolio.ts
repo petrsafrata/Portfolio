@@ -1,6 +1,8 @@
-export type Level = "základy" | "středně pokročilý" | "pokročilý";
+export type Level = "basic" | "intermediate" | "advanced";
 export type LinkIcon = "Mail" | "Github" | "Briefcase";
 export type SkillIcon = "Server" | "Code2" | "Database" | "Wrench" | "Layers";
+export type BadgeIcon = "ShieldCheck" | "Database" | "Wrench" | "Terminal";
+export type IconName = LinkIcon | SkillIcon | BadgeIcon;
 
 export type Link = {
   label: string;
@@ -55,16 +57,22 @@ export type Service = {
   description: string;
 };
 
-export type PortfolioData = {
+export type Portfolio = {
   name: string;
   title: string;
   location: string;
+  headline: string;
   summary: string;
+  heroBadges: { icon: BadgeIcon; label: string }[];
   links: Link[];
   quickInfo: {
     languages: { name: string; level: string }[];
     license: string;
     interests: string[];
+  };
+  about: {
+    focus: string[];
+    workStyle: string[];
   };
   skills: SkillGroup[];
   experience: Experience[];

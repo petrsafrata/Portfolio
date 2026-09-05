@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import {
   Briefcase,
+  Code2,
   Database,
   Github,
+  Layers,
   Mail,
+  Server,
   ShieldCheck,
   Terminal,
   Wrench,
@@ -11,10 +14,24 @@ import {
 import { ProfilePhoto } from "../components/ProfilePhoto";
 import { Card } from "../components/ui/Card";
 import { Chip } from "../components/ui/Chip";
-import { portfolio } from "../data/portfolio";
+import { useLanguage } from "../context/useLanguage";
+import type { IconName } from "../types/portfolio";
+
+const icons: Record<IconName, typeof Mail> = {
+  Mail,
+  Github,
+  Briefcase,
+  Server,
+  Code2,
+  Database,
+  Wrench,
+  Layers,
+  ShieldCheck,
+  Terminal,
+};
 
 export function HeroSection() {
-  const linkIcons = { Mail, Github, Briefcase };
+  const { portfolio, t } = useLanguage();
   return (
     <section className="py-10">
       <motion.div
@@ -25,30 +42,23 @@ export function HeroSection() {
       >
         <div>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl text-purple-500">
-            Backendové systémy v Javě. Od dat po nasazení.
+            {portfolio.headline}
           </h1>
           <p className="mt-4 text-zinc-300/80">{portfolio.summary}</p>
           <div className="mt-6 flex flex-wrap gap-2">
-            <Chip>
-              <ShieldCheck size={14} className="mr-2 opacity-80" />
-              Spring Boot
-            </Chip>
-            <Chip>
-              <Database size={14} className="mr-2 opacity-80" />
-              MongoDB / Oracle
-            </Chip>
-            <Chip>
-              <Wrench size={14} className="mr-2 opacity-80" />
-              Docker
-            </Chip>
-            <Chip>
-              <Terminal size={14} className="mr-2 opacity-80" />
-              JS/TS automatizace
-            </Chip>
+            {portfolio.heroBadges.map((badge) => {
+              const Icon = icons[badge.icon];
+              return (
+                <Chip key={badge.label}>
+                  <Icon size={14} className="mr-2 opacity-80" />
+                  {badge.label}
+                </Chip>
+              );
+            })}
           </div>
           <div className="mt-7 flex flex-wrap gap-3">
             {portfolio.links.map((link) => {
-              const Icon = linkIcons[link.icon];
+              const Icon = icons[link.icon];
               return (
                 <a
                   key={link.label}
@@ -70,7 +80,7 @@ export function HeroSection() {
           <Card>
             <div className="flex items-center gap-2 text-sm font-semibold">
               <Briefcase size={18} />
-              Aktuálně
+              {t.hero.currently}
             </div>
             <p className="mt-3 text-sm text-zinc-300/80">
               {portfolio.experience[0].company} •{" "}
@@ -84,3 +94,4 @@ export function HeroSection() {
     </section>
   );
 }
+

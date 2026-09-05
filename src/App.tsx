@@ -2,7 +2,8 @@ import "./App.css";
 
 import { Star } from "lucide-react";
 
-import { portfolio } from "./data/portfolio";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
+import { useLanguage } from "./context/useLanguage";
 import { AboutSection } from "./sections/AboutSection";
 import { CertificationsSection } from "./sections/CertificationsSection";
 import { ContactSection } from "./sections/ContactSection";
@@ -12,17 +13,19 @@ import { HeroSection } from "./sections/HeroSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { SkillsSection } from "./sections/SkillsSection";
 
-const navigation = [
-  ["O mně", "about"],
-  ["Dovednosti", "skills"],
-  ["Projekty", "projects"],
-  ["Zkušenosti", "experience"],
-  ["Vzdělání", "education"],
-  ["Certifikace", "certs"],
-  ["Kontakt", "contact"],
-];
-
 export default function App() {
+  const { portfolio, t } = useLanguage();
+
+  const navigation: [string, string][] = [
+    [t.nav.about, "about"],
+    [t.nav.skills, "skills"],
+    [t.nav.projects, "projects"],
+    [t.nav.experience, "experience"],
+    [t.nav.education, "education"],
+    [t.nav.certifications, "certs"],
+    [t.nav.contact, "contact"],
+  ];
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="pointer-events-none fixed inset-0 -z-10">
@@ -42,13 +45,16 @@ export default function App() {
             </div>
           </div>
 
-          <nav className="hidden items-center gap-2 md:flex">
-            {navigation.map(([label, id]) => (
-              <a key={id} href={`#${id}`} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 hover:bg-white/10">
-                {label}
-              </a>
-            ))}
-          </nav>
+          <div className="flex items-center gap-3">
+            <nav className="hidden items-center gap-2 md:flex">
+              {navigation.map(([label, id]) => (
+                <a key={id} href={`#${id}`} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
 
@@ -63,7 +69,7 @@ export default function App() {
         <ContactSection />
 
         <footer className="py-10 text-center text-sm text-zinc-400/70">
-          © {new Date().getFullYear()} {portfolio.name} • Built with React + TypeScript
+          © {new Date().getFullYear()} {portfolio.name} • {t.footer.builtWith}
           <span className="hidden"> • IČO: 1234 • DIČ: 1234</span>
         </footer>
       </main>

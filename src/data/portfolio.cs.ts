@@ -1,11 +1,18 @@
-import type { PortfolioData } from "../types/portfolio";
+import type { Portfolio } from "../types/portfolio";
 
-export const portfolio: PortfolioData = {
+export const portfolioCs: Portfolio = {
   name: "Petr Šafrata",
   title: "Java / Spring Boot • Backend • Databáze • Docker",
   location: "ČR",
+  headline: "Backendové systémy v Javě. Od dat po nasazení.",
   summary:
     "Tvořím backendové systémy v Javě (Spring Boot) – od návrhu datového modelu a API přes práci s databázemi (MongoDB, Oracle, PostgreSQL) až po nasazení v Dockeru. Zaměřuji se na spolehlivé aplikace, datové pipeline a škálovatelnou architekturu.",
+  heroBadges: [
+    { icon: "ShieldCheck", label: "Spring Boot" },
+    { icon: "Database", label: "MongoDB / Oracle" },
+    { icon: "Wrench", label: "Docker" },
+    { icon: "Terminal", label: "JS/TS automatizace" },
+  ],
   links: [
     {
       label: "Email",
@@ -34,60 +41,73 @@ export const portfolio: PortfolioData = {
     license: "Skupina B",
     interests: ["squash", "inline", "jóga", "gym", "cestování", "origami"],
   },
+  about: {
+    focus: [
+      "Backendové aplikace v Javě a návrh API (Spring Boot).",
+      "Datové modely, validační schémata, práce s MongoDB/Oracle/PostgreSQL.",
+      "Vyhledávání nad dokumenty, indexace, extrakce obsahu (Tika/OCR/ASR).",
+      "Dockerizace a reprodukovatelné nasazení.",
+    ],
+    workStyle: [
+      "Preferuji čistý návrh, srozumitelnou architekturu a praktickou dokumentaci.",
+      "Rád přeměňuji složité problémy na funkční softwarová řešení.",
+      "Jako vyučující umím věci vysvětlit a dotahovat do funkčního výsledku.",
+    ],
+  },
   skills: [
     {
       title: "Back-end",
       icon: "Server",
       items: [
-        { name: "Java", level: "pokročilý" },
-        { name: "Spring Boot", level: "pokročilý" },
-        { name: "C# / .NET", level: "středně pokročilý" },
-        { name: "Python", level: "středně pokročilý" },
-        { name: "TypeScript", level: "základy" },
+        { name: "Java", level: "advanced" },
+        { name: "Spring Boot", level: "advanced" },
+        { name: "C# / .NET", level: "intermediate" },
+        { name: "Python", level: "intermediate" },
+        { name: "TypeScript", level: "basic" },
       ],
     },
     {
       title: "Front-end",
       icon: "Code2",
       items: [
-        { name: "JavaScript", level: "pokročilý" },
-        { name: "HTML", level: "pokročilý" },
-        { name: "CSS", level: "pokročilý" },
-        { name: "TypeScript", level: "základy" },
-        { name: "ReactJS", level: "základy" },
+        { name: "JavaScript", level: "advanced" },
+        { name: "HTML", level: "advanced" },
+        { name: "CSS", level: "advanced" },
+        { name: "TypeScript", level: "basic" },
+        { name: "ReactJS", level: "basic" },
       ],
     },
     {
       title: "Databáze & Search",
       icon: "Database",
       items: [
-        { name: "SQL", level: "pokročilý" },
-        { name: "PostgreSQL", level: "středně pokročilý" },
-        { name: "Oracle DB/ PL/SQL", level: "středně pokročilý" },
-        { name: "MS SQL", level: "středně pokročilý" },
-        { name: "MongoDB", level: "středně pokročilý" },
-        { name: "ElasticSearch", level: "základy" },
+        { name: "SQL", level: "advanced" },
+        { name: "PostgreSQL", level: "intermediate" },
+        { name: "Oracle DB/ PL/SQL", level: "intermediate" },
+        { name: "MS SQL", level: "intermediate" },
+        { name: "MongoDB", level: "intermediate" },
+        { name: "ElasticSearch", level: "basic" },
       ],
     },
     {
       title: "DevOps",
       icon: "Wrench",
       items: [
-        { name: "Maven", level: "pokročilý" },
-        { name: "Git / GitHub", level: "pokročilý" },
-        { name: "Docker", level: "středně pokročilý" },
-        { name: "Linux", level: "středně pokročilý" },
-        { name: "Apache", level: "základy" },
+        { name: "Maven", level: "advanced" },
+        { name: "Git / GitHub", level: "advanced" },
+        { name: "Docker", level: "intermediate" },
+        { name: "Linux", level: "intermediate" },
+        { name: "Apache", level: "basic" },
       ],
     },
     {
       title: "Analýza & spolupráce",
       icon: "Layers",
       items: [
-        { name: "Analýza požadavků", level: "pokročilý" },
-        { name: "Analýza dat", level: "pokročilý" },
-        { name: "Komunikace", level: "pokročilý" },
-        { name: "Týmová práce", level: "pokročilý" },
+        { name: "Analýza požadavků", level: "advanced" },
+        { name: "Analýza dat", level: "advanced" },
+        { name: "Komunikace", level: "advanced" },
+        { name: "Týmová práce", level: "advanced" },
       ],
     },
   ],
@@ -169,15 +189,7 @@ export const portfolio: PortfolioData = {
   projects: [
     {
       title: "Virtual Storage",
-      stack: [
-        "Java",
-        "Spring",
-        "Docker",
-        "ElasticSearch",
-        "Tika",
-        "Tesseract",
-        "Vosk",
-      ],
+      stack: ["Java", "Spring", "Docker", "ElasticSearch", "Tika", "Tesseract", "Vosk"],
       highlights: [
         "Webové úložiště dokumentů s vyhledáváním pomocí indexace v ElasticSearch.",
         "Integrace OCR (Tesseract) a ASR (Vosk), extrakce obsahu přes Apache Tika.",
@@ -197,14 +209,7 @@ export const portfolio: PortfolioData = {
     },
     {
       title: "DB Scope",
-      stack: [
-        "Java",
-        "Spring",
-        "ReactJS",
-        "TypeScript",
-        "Docker",
-        "PostgreSQL",
-      ],
+      stack: ["Java", "Spring", "ReactJS", "TypeScript", "Docker", "PostgreSQL"],
       highlights: [
         "Full-stack aplikace / REST API pro prozkoumávání a správu externích SQL databází bez předdefinovaných entit pro cílové schéma.",
         "Nezávislé na konkrétní databázi, umožňuje připojení k různým SQL databázím a prozkoumávání jejich schémat a dat.",
@@ -249,8 +254,7 @@ export const portfolio: PortfolioData = {
         "Podpora funkcí, proměnných, podmínek, cyklů a výrazů.",
         "Součástí: AST, parser a runtime.",
       ],
-      githubUrl:
-        "https://github.com/petrsafrata/Custom_programming_language_interpreter",
+      githubUrl: "https://github.com/petrsafrata/Custom_programming_language_interpreter",
     },
     {
       title: "MongoDB Cluster",
